@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Furaveri Maldives – Join</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <style>
+        :root {
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+            --bg: #F2FBFA;
+            --card: #FFFFFF;
+            --ink: #000000;
+            --muted: #000000;
+            --line: #BFE0DC;
+            --accent: #3CD0D8;
+            --accent-ink: #000000;
+            --ok: #1F8A5B;
+            --bad: #C62F3D;
+            --overlay: rgba(255, 255, 255, .06);
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px)
+        }
+
+        body {
+            background:
+                url('./image.jpg') center / cover no-repeat fixed,
+                linear-gradient(180deg, #8FD8E8 0%, #5ED6D0 55%, #1DA9B4 100%);
+            color: var(--ink);
+            font-family: Jost, system-ui, sans-serif;
+            min-height: 100vh
+        }
+
+        /* Very light layer over the image (raise .06 to make text easier to read) */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: var(--overlay)
+        }
+
+        /* Soft white glow behind text that sits directly on the photo */
+        .lift {
+            text-shadow: 0 0 14px rgba(255, 255, 255, .85), 0 0 4px rgba(255, 255, 255, .6)
+        }
+
+        .display {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            letter-spacing: -.01em
+        }
+
+        .field {
+            background: var(--bg);
+            border: 1.5px solid var(--line);
+            color: var(--ink)
+        }
+
+        .field:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 1px;
+            border-color: var(--accent)
+        }
+
+        .field.is-bad {
+            border-color: var(--bad)
+        }
+
+        .field.is-ok {
+            border-color: var(--ok)
+        }
+
+        .err {
+            color: var(--bad);
+            min-height: 1.25rem
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid #000;
+            outline-offset: 2px
+        }
+    </style>
+</head>
+
+<body>
+    <header class="lift max-w-6xl mx-auto px-5 py-5 flex items-center justify-between">
+        <a href="#" class="display text-3xl font-bold">Furaveri <span
+                class="text-sm font-semibold tracking-widest uppercase"
+                style="font-family:Jost,sans-serif">Maldives</span></a>
+        <nav class="flex items-center gap-2 text-sm font-medium">
+            <button data-switch="login" class="px-4 py-2 rounded-full hover:bg-white/50">Log in</button>
+            <button data-switch="signup" class="px-4 py-2 rounded-full font-semibold"
+                style="background:var(--accent);color:#000;text-shadow:none">Book your stay</button>
+        </nav>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-5 pt-6 pb-16 grid lg:grid-cols-2 gap-12 items-center">
+        <section class="lift">
+            <p class="inline-block rounded-full px-4 py-1.5 text-sm font-medium mb-5"
+                style="border:1px solid var(--line);background:var(--card);text-shadow:none">Raa Atoll · Maldives</p>
+            <h1 class="display text-6xl sm:text-7xl font-bold leading-[.98]">Wake up above the turquoise lagoon.</h1>
+            <p class="mt-6 text-lg max-w-md">Overwater villas, coral reefs on your doorstep and sunsets that stay with
+                you. Create an account to plan your stay at Furaveri.</p>
+            <ul class="mt-10 space-y-4 max-w-md">
+                <li class="flex gap-3"><span class="mt-1 h-2.5 w-2.5 rounded-full shrink-0"
+                        style="background:#000"></span><span><b>Overwater villas.</b> Step from your deck straight into
+                        the lagoon.</span></li>
+                <li class="flex gap-3"><span class="mt-1 h-2.5 w-2.5 rounded-full shrink-0"
+                        style="background:#000"></span><span><b>Reef snorkeling.</b> Turtles and rays, minutes from your
+                        door.</span></li>
+                <li class="flex gap-3"><span class="mt-1 h-2.5 w-2.5 rounded-full shrink-0"
+                        style="background:#000"></span><span><b>Sunset dining.</b> Candlelit tables right on the
+                        sand.</span></li>
+            </ul>
+        </section>
+
+        <section id="card" class="w-full max-w-md lg:ml-auto rounded-3xl p-6 sm:p-8"
+            style="background:var(--card);border:1px solid var(--line);box-shadow:0 20px 50px -25px rgba(20,33,61,.35)">
+            <div role="tablist" class="grid grid-cols-2 p-1 rounded-full text-sm font-semibold"
+                style="background:var(--bg)">
+                <button role="tab" id="tab-signup" data-switch="signup" class="py-2 rounded-full">Sign up</button>
+                <button role="tab" id="tab-login" data-switch="login" class="py-2 rounded-full">Log in</button>
+            </div>
+
+            <!-- Registration -->
+            <form id="signup" novalidate class="mt-6 space-y-4">
+                <div>
+                    <h2 class="display text-2xl font-bold">Join Furaveri</h2>
+                    <p class="text-sm mt-1">Get offers and plan your island stay.</p>
+                </div>
+                <div>
+                    <label for="s-name" class="block text-sm font-medium mb-1.5">Name</label>
+                    <input id="s-name" name="name" type="text" autocomplete="name" placeholder="Priya Raman"
+                        class="field w-full rounded-xl px-4 py-3">
+                    <p class="err text-sm mt-1" aria-live="polite"></p>
+                </div>
+                <div>
+                    <label for="s-email" class="block text-sm font-medium mb-1.5">Email</label>
+                    <input id="s-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"
+                        class="field w-full rounded-xl px-4 py-3">
+                    <p class="err text-sm mt-1" aria-live="polite"></p>
+                </div>
+                <div>
+                    <label for="s-pass" class="block text-sm font-medium mb-1.5">Password</label>
+                    <div class="relative">
+                        <input id="s-pass" name="password" type="password" autocomplete="new-password"
+                            placeholder="At least 6 characters" class="field w-full rounded-xl px-4 py-3 pr-16">
+                        <button type="button" data-toggle
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-medium">Show</button>
+                    </div>
+                    <p class="err text-sm mt-1" aria-live="polite"></p>
+                </div>
+                <button type="submit" disabled
+                    class="w-full rounded-xl py-3.5 font-semibold transition disabled:opacity-40 disabled:cursor-not-allowed"
+                    style="background:var(--accent);color:var(--accent-ink)">Create account</button>
+            </form>
+
+            <!-- Login -->
+            <form id="login" novalidate class="mt-6 space-y-4 hidden">
+                <div>
+                    <h2 class="display text-2xl font-bold">Welcome back, traveler</h2>
+                    <p class="text-sm mt-1">Log in to manage your stay.</p>
+                </div>
+                <div>
+                    <label for="l-email" class="block text-sm font-medium mb-1.5">Email</label>
+                    <input id="l-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"
+                        class="field w-full rounded-xl px-4 py-3">
+                    <p class="err text-sm mt-1" aria-live="polite"></p>
+                </div>
+                <div>
+                    <label for="l-pass" class="block text-sm font-medium mb-1.5">Password</label>
+                    <div class="relative">
+                        <input id="l-pass" name="password" type="password" autocomplete="current-password"
+                            placeholder="Your password" class="field w-full rounded-xl px-4 py-3 pr-16">
+                        <button type="button" data-toggle
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-medium">Show</button>
+                    </div>
+                    <p class="err text-sm mt-1" aria-live="polite"></p>
+                </div>
+                <button type="submit" disabled
+                    class="w-full rounded-xl py-3.5 font-semibold transition disabled:opacity-40 disabled:cursor-not-allowed"
+                    style="background:var(--accent);color:var(--accent-ink)">Log in</button>
+            </form>
+
+            <div id="done" class="hidden mt-8 text-center py-6" role="status">
+                <div class="mx-auto h-14 w-14 rounded-full grid place-items-center text-2xl"
+                    style="background:var(--ok);color:#fff">✓</div>
+                <h2 id="done-title" class="display text-2xl font-bold mt-4"></h2>
+                <p id="done-text" class="mt-1 text-sm"></p>
+                <button id="reset" class="mt-6 text-sm font-semibold underline">Back to the form</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
